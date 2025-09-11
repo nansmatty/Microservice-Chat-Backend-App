@@ -1,0 +1,28 @@
+{
+	"name": "user",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"build": "tsc",
+		"start": "node dist/index.js",
+		"dev": "concurrently \"tsc -w\" \"nodemon dist/index.js\""
+	},
+	"keywords": [],
+	"author": "Narayan Maity",
+	"license": "ISC",
+	"type": "module",
+	"dependencies": {
+		"dotenv": "^17.2.2",
+		"express": "^5.1.0",
+		"mongoose": "^8.18.1"
+	},
+	"devDependencies": {
+		"@types/dotenv": "^6.1.1",
+		"@types/express": "^5.0.3",
+		"@types/mongoose": "^5.11.96",
+		"@types/node": "^24.3.1",
+		"concurrently": "^9.2.1",
+		"nodemon": "^3.1.10"
+	}
+}
