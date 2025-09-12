@@ -2,15 +2,22 @@ import express from 'express';
 import dotenv from 'dotenv';
 import connectDB from './config/db.js';
 import { checkConnection } from './config/redis.js';
+import userRoutes from './routes/userRoutes.js';
+import { connectRabbitMQ } from './config/rabbitmq.js';
 
 dotenv.config();
 
 connectDB();
 checkConnection();
+connectRabbitMQ();
 
 const app = express();
-const PORT = process.env.PORT;
 
+app.use(express.json());
+
+app.use('/api/v1', userRoutes);
+
+const PORT = process.env.PORT;
 app.listen(PORT, () => {
 	console.log(`User service is running on port ${PORT}`);
 });

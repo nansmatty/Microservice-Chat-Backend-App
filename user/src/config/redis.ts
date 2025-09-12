@@ -16,7 +16,7 @@ export const redis = new Redis(redisClient());
 export const checkConnection = async () => {
 	try {
 		await redis.ping();
-		console.log('Redis is connected.');
+		console.log('✅Connected to Redis.');
 		return true; // Connection successful
 	} catch (error) {
 		console.error('Error connecting to Redis:', error);
