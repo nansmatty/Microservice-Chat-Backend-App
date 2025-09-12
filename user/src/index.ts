@@ -1,10 +1,12 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import connectDB from './db.js';
+import connectDB from './config/db.js';
+import { checkConnection } from './config/redis.js';
 
 dotenv.config();
 
 connectDB();
+checkConnection();
 
 const app = express();
 const PORT = process.env.PORT;
