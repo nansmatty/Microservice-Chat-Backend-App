@@ -2,6 +2,7 @@ import { generateToken } from '../config/generateToken.js';
 import { publishToQueue } from '../config/rabbitmq.js';
 import { redis } from '../config/redis.js';
 import TryCatch from '../config/TryCatch.js';
+import { AuthRequest } from '../middleware/isAuth.js';
 import { UserModel } from '../model/UserModel.js';
 
 export const loginUser = TryCatch(async (req, res) => {
@@ -59,4 +60,40 @@ export const verifyOTP = TryCatch(async (req, res) => {
 	const token = generateToken(user);
 
 	res.status(200).json({ message: 'User verified successfully', user, token });
+});
+
+export const getUserProfile = TryCatch(async (req: AuthRequest, res) => {
+	const user = req.user;
+	if (!user) {
+		return res.status(404).json({ message: 'User not found' });
+	}
+	res.status(200).json({ user });
+});
+
+export const updateName = TryCatch(async (req: AuthRequest, res) => {
+	const { name } = req.body;
+	const user = await UserModel.findById(req.user?._id);
+	if (!user) {
+		return res.status(404).json({ message: 'User not found' });
+	}
+	user.name = name || user.name;
+	await user.save();
+
+	const token = generateToken(user);
+
+	res.status(200).json({ message: 'Name updated successfully', user, token });
+});
+
+export const getAllUsers = TryCatch(async (req: AuthRequest, res) => {
+	const users = await UserModel.find({});
+	res.status(200).json({ users });
+});
+
+export const getUser = TryCatch(async (req: AuthRequest, res) => {
+	const userId = req.params.id;
+	const user = await UserModel.findById(userId);
+	if (!user) {
+		return res.status(404).json({ message: 'User not found' });
+	}
+	res.status(200).json({ user });
 });
