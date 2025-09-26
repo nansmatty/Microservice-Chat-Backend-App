@@ -5,6 +5,7 @@ import { checkConnection } from './config/redis.js';
 import userRoutes from './routes/userRoutes.js';
 import { connectRabbitMQ } from './config/rabbitmq.js';
 import cors from 'cors';
+import morgan from 'morgan';
 
 dotenv.config();
 
@@ -16,6 +17,11 @@ const app = express();
 
 app.use(express.json());
 app.use(cors());
+
+//morgan
+if (process.env.NODE_ENV === 'development') {
+	app.use(morgan('dev'));
+}
 
 app.use('/api/v1/user', userRoutes);
 

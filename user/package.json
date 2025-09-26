@@ -19,7 +19,8 @@
 		"express": "^5.1.0",
 		"ioredis": "^5.7.0",
 		"jsonwebtoken": "^9.0.2",
-		"mongoose": "^8.18.1"
+		"mongoose": "^8.18.1",
+		"morgan": "^1.10.1"
 	},
 	"devDependencies": {
 		"@types/amqplib": "^0.10.7",
@@ -28,6 +29,7 @@
 		"@types/express": "^5.0.3",
 		"@types/jsonwebtoken": "^9.0.10",
 		"@types/mongoose": "^5.11.96",
+		"@types/morgan": "^1.9.10",
 		"@types/node": "^24.3.1",
 		"concurrently": "^9.2.1",
 		"nodemon": "^3.1.10"
