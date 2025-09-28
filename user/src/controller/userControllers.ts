@@ -95,5 +95,5 @@ export const getUser = TryCatch(async (req: AuthRequest, res) => {
 	if (!user) {
 		return res.status(404).json({ message: 'User not found' });
 	}
-	res.status(200).json({ user });
+	res.status(200).json(user);
 });
