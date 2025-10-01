@@ -3,8 +3,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import connectDB from './config/db.js';
 import chatRoutes from './routes/chatRoutes.js';
-
-const app = express();
+import { app, server } from './config/socket.js';
 
 dotenv.config();
 
@@ -17,6 +16,6 @@ app.use('/api/v1/chat', chatRoutes);
 
 const PORT = process.env.PORT;
 
-app.listen(PORT, () => {
-	console.log(`Mail service is running on port ${PORT}`);
+server.listen(PORT, () => {
+	console.log(`Chat service is running on port ${PORT}`);
 });
