@@ -136,7 +136,7 @@ export const sendMessage = TryCatch(async (req: AuthRequest, res) => {
 
 	//Emit socket event to recipient if connected
 
-	res.status(201).json({ message: 'Message sent successfully.', data: message });
+	res.status(201).json({ resonse_message: 'Message sent successfully.', message });
 });
 
 export const getMessagesByChat = TryCatch(async (req: AuthRequest, res) => {
